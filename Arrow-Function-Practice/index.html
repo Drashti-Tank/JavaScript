@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="js/index.js">
+</head>
+<body>
+    <h1>JS Practical</h1>
+
+
+<script>
+
+// const obj = {
+//     fnc1: function() {
+//         console.log(this)
+//     }, 
+//     fnc2: () => console.log(this.fnc1)
+// };
+// obj.fnc1();
+// obj.fnc2();
+
+// ------------------------------------------------
+
+
+// const user1 = {
+//     name: "Drashti",
+//     fnc: function() {
+//         console.log(this);
+//     }
+// };
+
+// const user2 = {
+//     name: "Rekha"
+// }
+
+// user1.fnc();
+// user1.fnc.call();
+// user1.fnc.call(this);
+// user1.fnc.call(user2); // whatever you passing, becomes the 'this' for the function
+
+// ------------------------------------------------
+
+
+const objArrowFnc = {
+    firstName: "Drashti",
+    printFncA: () => console.log(this.firstName),
+    printFnc2: function() {
+        console.log(this.firstName)
+    }
+};
+
+objArrowFnc.printFncA();
+objArrowFnc.printFnc2();
+
+
+// Arrow function takes 'this' of its parent.
+
+// let sum = (a, b) => a + b;
+
+// console.log(sum(5, 9));
+
+</script>
+
+</body>
+</html>
