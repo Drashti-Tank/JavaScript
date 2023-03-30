@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <style>
+     html,
+     body {
+       height: 100%;
+     }
+     body {
+       margin: 0;
+       background: linear-gradient(45deg, #49a09d, #5f2c82);
+       font-family: sans-serif;
+       font-weight: 100;
+     }
+     .container {
+       position: absolute;
+       top: 50%;
+       left: 50%;
+       transform: translate(-50%, -50%);
+     }
+     table {
+       width: 800px;
+       border-collapse: collapse;
+       overflow: hidden;
+       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+     }
+     th,
+     td {
+       padding: 15px;
+       background-color: rgba(255, 255, 255, 0.2);
+       color: #fff;
+     }
+     th {
+       text-align: left;
+     }
+     thead th {
+       background-color: #55608f;
+     }
+     tbody tr:hover {
+       background-color: rgba(255, 255, 255, 0.3);
+     }
+     tbody td {
+       position: relative;
+     }
+     tbody td:hover:before {
+       content: "";
+       position: absolute;
+       left: 0;
+       right: 0;
+       top: -9999px;
+       bottom: -9999px;
+       background-color: rgba(255, 255, 255, 0.2);
+       z-index: -1;
+     }
+   </style>
+ </head>
+ <body>
+   <div class="container">
+     <strong>Male candidates</strong>
+     <table>
+       <th>Full name</th>
+       <th>age</th>
+       <th>balance</th>
+       <tr>
+         <td id="male-0-name"></td>
+         <td id="male-0-age"></td>
+         <td id="male-0-balance"></td>
+       </tr>
+       <tr>
+         <td id="male-1-name"></td>
+         <td id="male-1-age"></td>
+         <td id="male-1-balance"></td>
+       </tr>
+       <tr>
+         <td id="male-2-name"></td>
+         <td id="male-2-age"></td>
+         <td id="male-2-balance"></td>
+       </tr>
+       <tr>
+         <td colspan="2"><b>Total</b></td>
+         <td><b id="male-total"></b></td>
+       </tr>
+     </table>
+     <br />
+     <br />
+     <br />
+     <strong>Female candidates</strong>
+     <table>
+       <th>Full name</th>
+       <th>age</th>
+       <th>balance</th>
+       <tr>
+         <td id="female-0-name"></td>
+         <td id="female-0-age"></td>
+         <td id="female-0-balance"></td>
+       </tr>
+       <tr>
+         <td id="female-1-name"></td>
+         <td id="female-1-age"></td>
+         <td id="female-1-balance"></td>
+       </tr>
+       <tr>
+         <td colspan="2"><b>Total</b></td>
+         <td><b id="female-total"></b></td>
+       </tr>
+     </table>
+   </div>
+   <script>
+     const users = [
+       {
+         firstName: "Hrithik",
+         lastName: "Roshan",
+         age: 22,
+         balance: 22000,
+         gender: "male",
+       },
+       {
+         firstName: "Alia",
+         lastName: "Bhatt",
+         age: 26,
+         balance: 25000,
+         gender: "female",
+       },
+       {
+         firstName: "Varun",
+         lastName: "Dhawan",
+         age: 23,
+         balance: 55000,
+         gender: "male",
+       },
+       {
+         firstName: "Rajkumar",
+         lastName: "Rao",
+         age: 23,
+         balance: 85000,
+         gender: "male",
+       },
+       {
+         firstName: "Kriti",
+         lastName: "Sanon",
+         age: 20,
+         balance: 33000,
+         gender: "female",
+       },
+     ];
+
+
+    //  ------------------ Solution --------------------
+
+
+    //  Add fullName property to each element using map
+
+
+     const fullName = function(value, index, users) {
+      return value["fullName"] = value.firstName + ' ' + value.lastName;
+    }
+
+    users.map(fullName);
+
+
+// Create 2 new arrays from the new mapped array using filter by male and female
+
+const male = function(value) {
+    return value.gender ==='male';
+
+}
+
+const female = function(value) {
+    return value.gender ==='female';
+}
+
+const maleUser = users.filter(male);
+const femaleUser = users.filter(female);
+
+// document.getElementById("female-total").innerText = newbal;
+
+
+// Create 2 more new variable which calculates the total for male and female
+
+const getTotal = function(prevValue,value) {
+    return prevValue + value.balance;
+}
+
+const newbal = maleUser.reduce(getTotal ,0);
+// console.log(newbal);
+
+document.getElementById("male-total").innerText = newbal;
+
+const newbalfemale = femaleUser.reduce(getTotal ,0);
+// console.log(newbal);
+document.getElementById("female-total").innerText = newbalfemale;
+
+
+// Display the data using forEach function
+
+const maleUserFilterCallback = function (value,index) {
+    document.getElementById("male-"+index+"-name").innerText = value.fullName;
+    document.getElementById("male-"+index+"-age").innerText = value.age;
+    document.getElementById("male-"+index+"-balance").innerText = value.balance;
+    
+}
+
+maleUser.forEach(maleUserFilterCallback);
+
+const femaleUserFilterCallback = function (value,index) {
+    document.getElementById("female-"+index+"-name").innerText = value.fullName;
+    document.getElementById("female-"+index+"-age").innerText = value.age;
+    document.getElementById("female-"+index+"-balance").innerText = value.balance;
+    
+}
+
+femaleUser.forEach(femaleUserFilterCallback);
+
+   </script>
+ </body>
+</html>
+

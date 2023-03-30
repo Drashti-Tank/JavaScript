@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Manipulation</title>
+</head>
+<body>
+    <h1>String Manipulation</h1>
+    <h3>Input String:- Hi there. My name is Sam. This is my lucky day. I like coding so much. This is it</h3>
+
+
+    <script>
+        
+        let inputString = "Hi there. My name is Sam. This is my lucky day. I like coding so much. This is it.";
+        let skipNum = 2;
+
+        let sentences = inputString.split(". ");
+
+
+        for (let i = 0; i < sentences.length; i++) {
+
+            let words = sentences[i].split(" ");
+  
+            let reverseIndex = words.length - 1 - skipNum;
+                for (let j = 0; j < Math.floor(words.length / 2); j++) {
+                    if (j <= reverseIndex) {
+                        let temp = words[j];
+                        words[j] = words[reverseIndex];
+                        words[reverseIndex] = temp;
+                        reverseIndex--;
+                    } else {
+                    break;
+                    }
+                }
+  
+            sentences[i] = words.join(" ");
+        }
+
+        let outputString = sentences.join(". ");
+
+        document.write(outputString);
+
+
+
+
+
+    </script>
+</body>
+</html>
